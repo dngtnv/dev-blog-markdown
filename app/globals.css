@@ -3,27 +3,72 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-}
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --color-bg: 0deg 0% 97.25%;
+    --color-fg: 219deg 18% 22%;
+    --color-primary: 221deg 89% 72%;
+    --color-secondary: 261deg 24% 38%;
+    --color-tertiary: 207deg 10% 44%;
+    --color-navbar: 0deg 0% 91%;
+    --color-themetogglebtn: 261deg 85% 79%;
+    --color-border: 219deg 18% 22%;
+    --color-nav-hover: 0deg 0% 32%;
   }
-}
+  :root[data-theme='light'] {
+    --color-bg: 0deg 0% 97.25%;
+    --color-fg: 219deg 18% 22%;
+    --color-primary: 221deg 89% 72%;
+    --color-secondary: 261deg 24% 38%;
+    --color-tertiary: 207deg 10% 44%;
+    --color-navbar: 0deg 0% 91%;
+    --color-themetogglebtn: 261deg 85% 79%;
+    --color-border: 219deg 18% 22%;
+    --color-nav-hover: 0deg 0% 32%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: 235deg 19% 13%;
+      --color-fg: 0deg 0% 100%;
+      --color-primary: 218deg 45% 37%;
+      --color-secondary: 261deg 85% 79%;
+      --color-tertiary: 226deg 7% 61%;
+      --color-navbar: 229.23deg 23.08% 33.14%;
+      --color-themetogglebtn: 221deg 18% 17%;
+      --color-border: 219deg 18% 22%;
+      --color-nav-hover: 0deg 0% 100%;
+    }
+  }
+  :root[data-theme='dark'] {
+    --color-bg: 235deg 19% 13%;
+    --color-fg: 0deg 0% 100%;
+    --color-primary: 218deg 45% 37%;
+    --color-secondary: 261deg 85% 79%;
+    --color-tertiary: 226deg 7% 61%;
+    --color-navbar: 229.23deg 23.08% 33.14%;
+    --color-themetogglebtn: 221deg 18% 17%;
+    --color-border: 219deg 18% 22%;
+    --color-nav-hover: 0deg 0% 100%;
+  }
 
-body {
-  line-height: 1.1;
-  color: rgb(var(--foreground-rgb));
-  background: #24283B;
+  html {
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Open Sans',
+      'Helvetica Neue',
+      sans-serif;
+  }
+
+  body {
+    line-height: 1.1;
+    color: hsl(var(--color-fg) / 100);
+    background: hsl(var(--color-bg));
+  }
 }

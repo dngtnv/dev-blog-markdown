@@ -1,7 +1,17 @@
+import Header from '../components/Header'
+import Hero from '../components/Hero'
+import Article from '../components/article/ArticleList'
+import Footer from '../components/Footer'
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-     homepage 
-    </main>
+    <>
+      <Header />
+      <main className="mx-auto min-h-screen max-w-5xl pt-24">
+        <Hero />
+        <Article />
+      </main>
+      <Footer />
+    </>
   )
 }
