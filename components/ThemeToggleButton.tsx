@@ -3,48 +3,36 @@
 import { useEffect, useState } from 'react'
 import SunIcon from './ui/SunIcon'
 import MoonIcon from './ui/MoonIcon'
+import { useTheme } from 'next-themes'
 
 const ThemeToggleButton = () => {
   const [hasMounted, setHasMounted] = useState(false)
-  const isBrowser = typeof window !== 'undefined'
-  const storedTheme = isBrowser ? window.localStorage.getItem('theme') : null
-  const [theme, setTheme] = useState(() => {
-    if (storedTheme) {
-      return storedTheme
-    }
-    if (isBrowser) {
-      const userMedia = window.matchMedia('(prefers-color-scheme: dark)')
-      return userMedia.matches ? 'dark' : 'light'
-    }
-  })
+  const { setTheme, resolvedTheme } = useTheme()
 
   function toggleTheme() {
-    const updatedTheme = theme === 'light' ? 'dark' : 'light'
-    setTheme(updatedTheme)
-    window.localStorage.setItem('theme', updatedTheme)
+    if (resolvedTheme === 'dark') {
+      setTheme('light')
+    } else {
+      setTheme('dark')
+    }
   }
 
   useEffect(() => {
     setHasMounted(true)
   }, [])
 
-  useEffect(() => {
-    const root = window.document.documentElement
-    root.dataset.theme = theme
-  }, [theme])
-
-  const isLightTheme = theme === 'light'
+  const isLightTheme = resolvedTheme === 'light'
 
   return (
     hasMounted && (
       <button
         onClick={toggleTheme}
-        className="rounded-lg bg-themebtn px-3 py-3 text-white"
+        className="rounded-lg bg-theme-btn-bg/85 px-3 py-3 text-white dark:bg-theme-btn-bg"
       >
         {isLightTheme ? (
-          <MoonIcon className="text-secondary" />
+          <MoonIcon className="text-theme-btn-fg" />
         ) : (
-          <SunIcon className="text-[#e0af68]" />
+          <SunIcon className="text-theme-btn-fg" />
         )}
       </button>
     )

@@ -16,7 +16,8 @@ const config: Config = {
       colors: {
         navbar: 'hsl(var(--color-navbar) / <alpha-value>)',
         'nav-hover': 'hsl(var(--color-nav-hover) / <alpha-value>)',
-        themebtn: 'hsl(var(--color-themetogglebtn) / <alpha-value>)',
+        'theme-btn-bg': 'hsl(var(--color-themetoggle-bg) / <alpha-value>)',
+        'theme-btn-fg': 'hsl(var(--color-themetoggle-fg) / <alpha-value>)',
         bd: 'hsl(var(--color-border) / <alpha-value>)',
         content: 'hsl(var(--color-fg) / <alpha-value>)',
         bkg: 'hsl(var(--color-bg) / <alpha-value>)',
@@ -27,5 +28,6 @@ const config: Config = {
     },
   },
   plugins: [],
+  darkMode: ['class', '[data-theme="dark"]'],
 }
 export default config
