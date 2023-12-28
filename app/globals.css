@@ -14,7 +14,9 @@
     --color-themetoggle-fg: 261deg 85% 79%;
     --color-border: 219deg 18% 22%;
     --color-nav-hover: 0deg 0% 32%;
+    --color-footer-bg: 221deg 19% 24%;
   }
+
   [data-theme='dark'] {
     --color-bg: 235deg 19% 13%;
     --color-fg: 0deg 0% 100%;
@@ -26,6 +28,7 @@
     --color-themetoggle-fg: 36deg 66% 64%;
     --color-border: 219deg 18% 22%;
     --color-nav-hover: 0deg 0% 100%;
+    --color-footer-bg: 219deg 18% 22%;
   }
 
   html {
