@@ -27,13 +27,16 @@ const ThemeToggleButton = () => {
     hasMounted && (
       <button
         onClick={toggleTheme}
-        className="rounded-lg bg-theme-btn-bg/85 px-3 py-3 text-white dark:bg-theme-btn-bg"
+        className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-theme-btn-bg/85 px-3 py-3 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bd focus-visible:ring-offset-2 dark:bg-theme-btn-bg"
+        aria-label="Toggle theme"
       >
-        {isLightTheme ? (
-          <MoonIcon className="text-theme-btn-fg" />
-        ) : (
+        <span
+          className={`flex w-16 ${isLightTheme ? 'animate-slide-left' : 'animate-slide-right'
+            } justify-between transition-transform`}
+        >
           <SunIcon className="text-theme-btn-fg" />
-        )}
+          <MoonIcon className="text-theme-btn-fg" />
+        </span>
       </button>
     )
   )

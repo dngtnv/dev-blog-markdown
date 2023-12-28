@@ -61,11 +61,16 @@ const articleList = [
 
 const ArticleList = () => {
   return (
-    <section className="mt-[5.625rem]">
-      <div className="rounded-2xl rounded-b-none border-4 border-b-0 border-bd p-8">
-        <p className="font-medium uppercase tracking-wide">Latest</p>
-        <hr className="mt-[14px] border-[1px] border-bd" />
-        <div className="my-9 grid grid-cols-2 gap-7">
+    <section
+      className="mt-[5.625rem] px-3 sm:px-6 lg:px-0"
+      aria-label="Articles"
+    >
+      <div className="rounded-2xl rounded-b-none border-4 border-b-0 border-bd px-3 py-8 sm:px-8">
+        <p className="font-medium uppercase tracking-wide" aria-label="Latest">
+          Latest
+        </p>
+        <hr className="mt-[14px] border border-bd" />
+        <div className="grid-col-1 my-9 grid gap-7 lg:grid-cols-2">
           {articleList.map((article) => (
             <ArticleItem key={article.id} article={article} />
           ))}
