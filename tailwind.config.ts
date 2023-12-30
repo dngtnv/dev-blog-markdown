@@ -14,7 +14,7 @@ const config: Config = {
       },
       backgroundImage: {
         'logo-pattern':
-          'linear-gradient(234deg, #F4A446 28.74%, rgba(217, 52, 33, 0.55) 55.2%, rgba(167, 153, 31, 0.85) 87.76%)',
+          'conic-gradient(#F46BD0, #F66F71, #F4D06C, #AFF46C, #6EF790, #6CEDF6, #6E91F2, #B96AF2, #F46BD0), radial-gradient(#fff 50%, transparent calc(50% + 2px))',
         'footer-pattern': "url('/footer-pattern.svg')",
       },
       colors: {
@@ -31,10 +31,15 @@ const config: Config = {
         tertiary: 'hsl(var(--color-tertiary) / <alpha-value>)',
       },
       animation: {
+        'wheel-rotate': 'wheel-rotate 0.8s linear infinite',
         'slide-right': 'slide-right 0.2s ease forwards',
         'slide-left': 'slide-left 0.2s ease forwards',
       },
       keyframes: {
+        'wheel-rotate': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
         'slide-right': {
           '0%': { transform: 'translateX(-61%)' },
           '100%': { transform: 'translateX(0)' },
@@ -46,7 +51,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
   darkMode: ['class', '[data-theme="dark"]'],
 }
 export default config
