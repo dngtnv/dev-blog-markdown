@@ -1,6 +1,6 @@
-import Content from '../../blog/my-nvim-config.mdx'
 import { getArticleBySlug } from '../../../lib/mdx-api'
 import Tag from '@/components/ui/Tag'
+import dynamic from 'next/dynamic'
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const article: any = getArticleBySlug(params.slug, [
@@ -11,6 +11,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
     'content',
     'tags',
   ])
+
+  const DynamicMdx = dynamic(() => import(`../../blog/${article.slug}.mdx`))
+
   return (
     <article aria-labelledby="article-title">
       <header className="py-12 text-center">
@@ -40,7 +43,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
             </div>
           </div>
           <div className="my-5 text-base leading-[1.9] sm:text-lg">
-            <Content />
+            <div className="prose prose-zinc md:prose-lg dark:prose-invert">
+              <DynamicMdx />
+            </div>
           </div>
         </section>
         <aside className="hidden w-[300px] lg:block">Table of Contents</aside>
