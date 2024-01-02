@@ -1,3 +1,4 @@
+import MdxLayout from '@/app/blog/layout'
 import { getArticleBySlug } from '../../../lib/mdx-api'
 import Tag from '@/components/ui/Tag'
 import dynamic from 'next/dynamic'
@@ -20,12 +21,12 @@ const Page = ({ params }: { params: { slug: string } }) => {
         <div className="flex justify-center gap-2">
           <Tag tags={article.tags} />
         </div>
-        <div className="px-6 sm:px-16 lg:px-0">
+        <div className="px-6 text-center sm:px-16 lg:px-0">
           <h1
             id="article-title"
-            className="mx-auto mt-6 max-w-3xl text-left text-xl font-semibold leading-[1.5] lg:text-3xl"
+            className="mx-auto mt-6 inline-block max-w-3xl text-left text-xl font-semibold leading-[1.5] lg:text-4xl"
           >
-            {article.title}
+            <span className="text-left">{article.title}</span>
           </h1>
         </div>
       </header>
@@ -43,9 +44,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
             </div>
           </div>
           <div className="my-5 text-base leading-[1.9] sm:text-lg">
-            <div className="prose prose-zinc md:prose-lg dark:prose-invert">
+            <MdxLayout>
               <DynamicMdx />
-            </div>
+            </MdxLayout>
           </div>
         </section>
         <aside className="hidden w-[300px] lg:block">Table of Contents</aside>

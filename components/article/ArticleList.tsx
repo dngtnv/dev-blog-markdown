@@ -10,7 +10,6 @@ const ArticleList = () => {
     'slug',
     'tags',
   ])
-  console.log(allArticles)
 
   return (
     <section

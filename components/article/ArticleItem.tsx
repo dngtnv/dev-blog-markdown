@@ -1,10 +1,11 @@
 import Article from '@/types/article'
 import Link from 'next/link'
+import Tag from '../ui/Tag'
 
 const ArticleItem = ({ article }: { article: Article }) => {
   return (
     <article
-      key={article.id}
+      key={article.slug}
       className="flex items-start justify-start gap-3"
       aria-labelledby="article-title"
     >
@@ -21,9 +22,9 @@ const ArticleItem = ({ article }: { article: Article }) => {
             Published: {article.createdAt}
           </p>
         </Link>
-        <span className="self-start rounded-xl bg-primary/100 px-[0.4rem] py-[0.2rem] text-xs text-white">
-          {article.tags.map((tag: string) => '#' + tag).join(' ')}
-        </span>
+        <div className="flex items-center gap-2">
+          <Tag tags={article.tags} />
+        </div>
       </div>
     </article>
   )
