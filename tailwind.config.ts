@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+const plugin = require('tailwindcss/plugin')
 
 const config: Config = {
   content: [
@@ -30,6 +31,8 @@ const config: Config = {
         primary: 'hsl(var(--color-primary) / <alpha-value>)',
         secondary: 'hsl(var(--color-secondary) / <alpha-value>)',
         tertiary: 'hsl(var(--color-tertiary) / <alpha-value>)',
+        'single-code': 'hsl(var(--color-single-code) / <alpha-value>)',
+        'mdx-link': 'hsl(var(--color-mdx-link) / <alpha-value>)',
       },
       animation: {
         'wheel-rotate': 'wheel-rotate 0.8s linear infinite',
@@ -52,7 +55,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    plugin(function({ addVariant }) {
+      addVariant('standalone-code', '&:not(:is(pre code))')
+    }),
+  ],
   darkMode: ['class', '[data-theme="dark"]'],
 }
 export default config

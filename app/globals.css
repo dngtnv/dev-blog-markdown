@@ -15,6 +15,8 @@
     --color-border: 219deg 18% 22%;
     --color-nav-hover: 0deg 0% 32%;
     --color-footer-bg: 221deg 19% 24%;
+    --color-single-code: 213deg 39% 95%;
+    --color-mdx-link: 168deg 76% 42%;
   }
 
   [data-theme='dark'] {
@@ -29,6 +31,8 @@
     --color-border: 219deg 18% 22%;
     --color-nav-hover: 0deg 0% 100%;
     --color-footer-bg: 219deg 18% 22%;
+    --color-single-code: 213deg 39% 23%;
+    --color-mdx-link: 168deg 76% 42%;
   }
 
   html {

@@ -17,7 +17,39 @@ const Myh4 = ({ children }: { children?: React.ReactNode }) => (
 )
 
 const Myli = ({ children }: { children?: React.ReactNode }) => (
-  <li className="my-2 pl-0">{children}</li>
+  <li className="not-prose my-2 pl-0">{children}</li>
+)
+
+const Mycode = ({ children }: { children?: React.ReactNode }) => (
+  <code className="font-normal before:content-none after:content-none standalone-code:rounded standalone-code:bg-single-code standalone-code:px-[0.4rem] standalone-code:py-[0.2rem] standalone-code:text-[0.85em]">
+    {children}
+  </code>
+)
+
+const MyPre = ({ children }: { children?: React.ReactNode }) => (
+  <pre className="p-4">{children}</pre>
+)
+
+const Mya = ({ children }: { children?: React.ReactNode }) => (
+  <a
+    className="cursor-pointer text-mdx-link decoration-current underline-offset-2 hover:text-mdx-link/70"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {children}
+  </a>
+)
+
+const MyBlockquote = ({ children }: { children?: React.ReactNode }) => (
+  <blockquote className="border-l-[3px] border-l-mdx-link text-[0.97em] font-normal not-italic text-content/85 [&>p]:before:content-none [&>p]:after:content-none">
+    {children}
+  </blockquote>
+)
+
+const MyTable = ({ children }: { children?: React.ReactNode }) => (
+  <div className="rounded-lg prose-table:border prose-table:border-slate-300 prose-tr:border-slate-400 prose-th:bg-emerald-700 prose-th:p-2 prose-th:text-white prose-td:p-2 dark:prose-table:border-zinc-700 dark:prose-tr:border-zinc-700">
+    <table>{children}</table>
+  </div>
 )
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -27,6 +59,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h3: Myh3,
     h4: Myh4,
     li: Myli,
+    a: Mya,
+    blockquote: MyBlockquote,
+    pre: MyPre,
+    code: Mycode,
+    table: MyTable,
     ...components,
   }
 }

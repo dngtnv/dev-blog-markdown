@@ -1,11 +1,33 @@
 import createMDX from '@next/mdx'
 import remarkFrontmatter from 'remark-frontmatter'
+import remarkGfm from 'remark-gfm'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkFrontmatter],
-    rehypePlugins: [],
+    remarkPlugins: [remarkFrontmatter, remarkGfm],
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: 'catppuccin-macchiato',
+          onVisitLine: (node) => {
+            // Prevent line from collapsing in `display: grid` mode, and allow empty
+            // lines to be copy/pasted
+            if (node.children.lenght == 0) {
+              node.children = [{ type: 'text', value: ' ' }]
+            }
+          },
+          onVisitHighlightdLine(node) {
+            node.properties.className.push('line--highlighted')
+          },
+          onVisitHighlightedWord(node) {
+            node.properties.className = ['word--highlighted']
+          },
+        },
+      ],
+    ],
   },
 })
 
