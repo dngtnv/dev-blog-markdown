@@ -6,7 +6,8 @@
   :root {
     --color-bg: 0deg 0% 97.25%;
     --color-fg: 219deg 18% 22%;
-    --color-primary: 221deg 89% 72%;
+    --color-fg-reverse: 0deg 0% 100%;
+    --color-primary: 218deg 45% 37%;
     --color-secondary: 261deg 24% 38%;
     --color-tertiary: 207deg 10% 44%;
     --color-navbar: 0deg 0% 91%;
@@ -16,13 +17,14 @@
     --color-nav-hover: 0deg 0% 32%;
     --color-footer-bg: 221deg 19% 24%;
     --color-single-code: 213deg 39% 95%;
-    --color-mdx-link: 168deg 76% 42%;
+    --color-mdx-link: 171deg 32% 29%;
   }
 
   [data-theme='dark'] {
     --color-bg: 235deg 19% 13%;
     --color-fg: 0deg 0% 100%;
-    --color-primary: 218deg 45% 37%;
+    --color-fg-reverse: 219deg 18% 22%;
+    --color-primary: 221deg 89% 73%;
     --color-secondary: 261deg 85% 79%;
     --color-tertiary: 226deg 7% 61%;
     --color-navbar: 229.23deg 23.08% 33.14%;
@@ -32,7 +34,7 @@
     --color-nav-hover: 0deg 0% 100%;
     --color-footer-bg: 219deg 18% 22%;
     --color-single-code: 213deg 39% 23%;
-    --color-mdx-link: 168deg 76% 42%;
+    --color-mdx-link: 171deg 58% 65%;
   }
 
   html {

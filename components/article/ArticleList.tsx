@@ -8,7 +8,7 @@ const ArticleList = () => {
     'title',
     'createdAt',
     'slug',
-    'tags',
+    'topics',
   ])
 
   return (

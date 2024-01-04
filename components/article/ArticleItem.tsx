@@ -23,7 +23,7 @@ const ArticleItem = ({ article }: { article: Article }) => {
           </p>
         </Link>
         <div className="flex items-center gap-2">
-          <Tag tags={article.tags} />
+          <Tag topics={article.topics} />
         </div>
       </div>
     </article>

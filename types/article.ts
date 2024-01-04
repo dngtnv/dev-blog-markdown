@@ -10,7 +10,7 @@ type ArticleType = {
     alt: string
   }
   content: string
-  tags: string[]
+  topics: string[]
 }
 
 export default ArticleType

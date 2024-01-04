@@ -27,6 +27,7 @@ const config: Config = {
         'theme-btn-fg': 'hsl(var(--color-themetoggle-fg) / <alpha-value>)',
         bd: 'hsl(var(--color-border) / <alpha-value>)',
         content: 'hsl(var(--color-fg) / <alpha-value>)',
+        'content-reverse': 'hsl(var(--color-fg-reverse) / <alpha-value>)',
         bkg: 'hsl(var(--color-bg) / <alpha-value>)',
         primary: 'hsl(var(--color-primary) / <alpha-value>)',
         secondary: 'hsl(var(--color-secondary) / <alpha-value>)',

@@ -48,12 +48,12 @@ const MyBlockquote = ({ children }: { children?: React.ReactNode }) => (
 )
 
 const MyTable = ({ children }: { children?: React.ReactNode }) => (
-  <div className="rounded-lg prose-table:border prose-table:border-slate-300 prose-tr:border-slate-400 prose-th:bg-emerald-700 prose-th:p-2 prose-th:text-white prose-td:border prose-td:border-slate-300 prose-td:p-2 dark:prose-table:border-zinc-700 dark:prose-tr:border-zinc-700 dark:prose-td:border-zinc-700">
+  <div className="rounded-lg prose-table:border prose-table:border-slate-300 prose-tr:border-slate-400 prose-th:bg-primary prose-th:p-2 prose-th:text-content-reverse prose-td:border prose-td:border-slate-300 prose-td:p-2 dark:prose-table:border-zinc-700 dark:prose-tr:border-zinc-700 dark:prose-td:border-zinc-700">
     <table>{children}</table>
   </div>
 )
 
-const MyImg = (props: ImageProps) => (
+const MyImg = (props: any) => (
   <Image
     width={720}
     height={360}

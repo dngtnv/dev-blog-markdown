@@ -7,19 +7,20 @@ const Page = ({ params }: { params: { slug: string } }) => {
   const article: any = getArticleBySlug(params.slug, [
     'title',
     'createdAt',
+    'readTime',
     'slug',
     'author',
     'content',
-    'tags',
+    'topics',
   ])
 
-  const DynamicMdx = dynamic(() => import(`../../blog/${article.slug}.mdx`))
+  const DynamicMdx = dynamic(() => import(`../../blog/${article.slug}.md`))
 
   return (
     <article aria-labelledby="article-title">
       <header className="py-12 text-center">
         <div className="flex justify-center gap-2">
-          <Tag tags={article.tags} />
+          <Tag topics={article.topics} />
         </div>
         <div className="px-6 text-center sm:px-16 lg:px-0">
           <h1
@@ -39,7 +40,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
                 {article.author}
               </p>
               <p className="text-sm text-tertiary">
-                {article.createdAt} - 2 min read
+                {article.createdAt} - {article.readTime} min read
               </p>
             </div>
           </div>
