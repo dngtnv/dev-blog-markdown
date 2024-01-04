@@ -6,7 +6,7 @@ updatedAt: '2021-11-20'
 author: dngtnv
 description: This is how I make nvim become the best editor ever exists.
 slug: my-nvim-config
-tags:
+topics:
   - 'nvim'
   - 'lua'
 ---
@@ -18,11 +18,11 @@ tags:
 ### This is a H3
 
 #### This is a H4
- 
+
 This is some **bold** and _italics_ text.
- 
+
 This is a list in markdown:
- 
+
 - One
 - Two
 - Three
@@ -31,8 +31,8 @@ This is a list in markdown:
 This is a code block:
 
 ```js
-const greeting = 'hello world';
-console.log(greeting);
+const greeting = 'hello world'
+console.log(greeting)
 ```
 
 This is ==highlight== text
@@ -58,4 +58,3 @@ This is an image:
 ![This is an image](https://source.unsplash.com/random/720x360)
 
 This is a youtube embed:
-
