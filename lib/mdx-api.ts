@@ -1,22 +1,25 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import getReadTime from './mdx-read-time'
 
 const postsDirectory = join(process.cwd(), 'app', 'blog')
 
 export function getArticleSlugs() {
-  return fs.readdirSync(postsDirectory).filter((path) => /\.mdx?$/.test(path))
+  return fs.readdirSync(postsDirectory).filter((path) => /\.md?$/.test(path))
 }
 
-export function getArticleBySlug(slug: string, fields: string[] = []) {
-  const realSlug = slug.replace(/\.mdx$/, '')
-  const fullPath = join(postsDirectory, `${realSlug}.mdx`)
+export function getArticleBySlug(slug: string, fields: string[] = []): Article {
+  const realSlug = slug.replace(/\.md$/, '')
+  const fullPath = join(postsDirectory, `${realSlug}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
   type Items = {
     [key: string]: string
   }
+
+  const readTime = getReadTime(content)
 
   const items: Items = {}
 
@@ -30,6 +33,10 @@ export function getArticleBySlug(slug: string, fields: string[] = []) {
       items[field] = content
     }
 
+    if (field === 'readTime') {
+      items[field] = readTime
+    }
+
     if (typeof data[field] !== 'undefined') {
       items[field] = data[field]
     }
@@ -38,7 +45,7 @@ export function getArticleBySlug(slug: string, fields: string[] = []) {
   return items
 }
 
-export function getAllArticles(fields: string[] = []) {
+export function getAllArticles(fields: string[] = []): Article[] {
   const slugs = getArticleSlugs()
   const posts = slugs
     .map((slug) => getArticleBySlug(slug, fields))
