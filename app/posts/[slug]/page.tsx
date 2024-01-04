@@ -30,8 +30,8 @@ const Page = ({ params }: { params: { slug: string } }) => {
           </h1>
         </div>
       </header>
-      <div className="md:flex md:justify-between md:gap-7">
-        <section className="w-full px-6 sm:px-16 lg:w-[calc(100%_-_330px)] lg:px-0">
+      <div className="md:flex md:justify-between md:gap-[30px]">
+        <section className="w-full px-6 sm:px-12 md:px-14 lg:w-[calc(100%_-_330px)] lg:px-6 xl:px-0">
           <div className="flex items-center">
             <div className="h-[3rem] w-[3rem] shrink-0 rounded-[50%] bg-gray-500"></div>
             <div className="ml-3 flex flex-col">

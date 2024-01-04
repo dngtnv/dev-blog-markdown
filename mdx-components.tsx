@@ -1,4 +1,5 @@
 import type { MDXComponents } from 'mdx/types'
+import Image, { ImageProps } from 'next/image'
 
 const Myh1 = ({ children }: { children?: React.ReactNode }) => (
   <h1 className="text-2xl md:text-3xl">{children}</h1>
@@ -32,7 +33,7 @@ const MyPre = ({ children }: { children?: React.ReactNode }) => (
 
 const Mya = ({ children }: { children?: React.ReactNode }) => (
   <a
-    className="cursor-pointer text-mdx-link decoration-current underline-offset-2 hover:text-mdx-link/70"
+    className="cursor-pointer font-normal text-mdx-link decoration-current underline-offset-2 hover:text-mdx-link/70"
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -47,9 +48,22 @@ const MyBlockquote = ({ children }: { children?: React.ReactNode }) => (
 )
 
 const MyTable = ({ children }: { children?: React.ReactNode }) => (
-  <div className="rounded-lg prose-table:border prose-table:border-slate-300 prose-tr:border-slate-400 prose-th:bg-emerald-700 prose-th:p-2 prose-th:text-white prose-td:p-2 dark:prose-table:border-zinc-700 dark:prose-tr:border-zinc-700">
+  <div className="rounded-lg prose-table:border prose-table:border-slate-300 prose-tr:border-slate-400 prose-th:bg-emerald-700 prose-th:p-2 prose-th:text-white prose-td:border prose-td:border-slate-300 prose-td:p-2 dark:prose-table:border-zinc-700 dark:prose-tr:border-zinc-700 dark:prose-td:border-zinc-700">
     <table>{children}</table>
   </div>
+)
+
+const MyImg = (props: ImageProps) => (
+  <Image
+    width={720}
+    height={360}
+    placeholder="blur"
+    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAAAkCAYAAACgyw26AAAAtUlEQVR42u3WQREAAAQAMJKroikVvN2WYhk9FQAAwEkKNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwDATwspCExdccHXxQAAAABJRU5ErkJggg=="
+    loading="lazy"
+    alt=""
+    sizes="100vw"
+    {...(props as ImageProps)}
+  />
 )
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -60,6 +74,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h4: Myh4,
     li: Myli,
     a: Mya,
+    img: MyImg,
     blockquote: MyBlockquote,
     pre: MyPre,
     code: Mycode,
