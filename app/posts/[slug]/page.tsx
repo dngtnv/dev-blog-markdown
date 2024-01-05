@@ -36,7 +36,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           <div className="flex items-center">
             <div className="h-[3rem] w-[3rem] shrink-0 rounded-[50%] bg-gray-500"></div>
             <div className="ml-3 flex flex-col">
-              <p className="text-sm font-semibold uppercase text-secondary/100">
+              <p className="text-sm font-semibold uppercase text-primary">
                 {article.author}
               </p>
               <p className="text-sm text-tertiary">

@@ -6,9 +6,8 @@
   :root {
     --color-bg: 0deg 0% 97.25%;
     --color-fg: 219deg 18% 22%;
-    --color-fg-reverse: 0deg 0% 100%;
     --color-primary: 218deg 45% 37%;
-    --color-secondary: 261deg 24% 38%;
+    --color-secondary: 252deg 49% 47%;
     --color-tertiary: 207deg 10% 44%;
     --color-navbar: 0deg 0% 91%;
     --color-themetoggle-bg: 221deg 18% 17%;
@@ -16,16 +15,16 @@
     --color-border: 219deg 18% 22%;
     --color-nav-hover: 0deg 0% 32%;
     --color-footer-bg: 221deg 19% 24%;
-    --color-single-code: 213deg 39% 95%;
-    --color-mdx-link: 171deg 32% 29%;
+    --color-single-code-bg: 213deg 70% 90%;
+    --color-single-code-fg: 221deg 39% 11%;
+    --color-mdx-link: 189deg 68% 27%;
   }
 
   [data-theme='dark'] {
     --color-bg: 235deg 19% 13%;
     --color-fg: 0deg 0% 100%;
-    --color-fg-reverse: 219deg 18% 22%;
     --color-primary: 221deg 89% 73%;
-    --color-secondary: 261deg 85% 79%;
+    --color-secondary: 252deg 49% 47%;
     --color-tertiary: 226deg 7% 61%;
     --color-navbar: 229.23deg 23.08% 33.14%;
     --color-themetoggle-bg: 221deg 18% 17%;
@@ -33,8 +32,9 @@
     --color-border: 219deg 18% 22%;
     --color-nav-hover: 0deg 0% 100%;
     --color-footer-bg: 219deg 18% 22%;
-    --color-single-code: 213deg 39% 23%;
-    --color-mdx-link: 171deg 58% 65%;
+    --color-single-code-bg: 213deg 39% 23%;
+    --color-single-code-fg: 0deg 0% 100%;
+    --color-mdx-link: 189deg 73% 52%;
   }
 
   html {
@@ -55,5 +55,23 @@
     line-height: 1.1;
     color: hsl(var(--color-fg) / 100);
     background: hsl(var(--color-bg));
+  }
+
+  [data-rehype-pretty-code-title] {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--color-secondary) / var(--tw-bg-opacity));
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    --tw-text-opacity: 1;
+    color: rgb(228 228 231 / var(--tw-text-opacity)) !important;
+  }
+
+  figcaption+pre {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
   }
 }

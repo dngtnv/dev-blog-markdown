@@ -8,7 +8,7 @@ const Tag = ({ topics }: Props) => {
       {topics.map((topic: string, index) => (
         <span
           key={index}
-          className="self-start rounded-xl bg-primary/100 px-[0.4rem] py-[0.2rem] text-xs font-medium text-content-reverse"
+          className="max-w-fit self-start rounded-lg bg-primary/100 px-[0.3rem] py-[0.125rem] text-xs font-medium text-white"
         >
           #{topic}
         </span>

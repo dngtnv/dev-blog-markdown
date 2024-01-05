@@ -21,15 +21,25 @@ const Myli = ({ children }: { children?: React.ReactNode }) => (
   <li className="not-prose my-2 pl-0">{children}</li>
 )
 
-const Mycode = ({ children }: { children?: React.ReactNode }) => (
-  <code className="font-normal before:content-none after:content-none standalone-code:rounded standalone-code:bg-single-code standalone-code:px-[0.4rem] standalone-code:py-[0.2rem] standalone-code:text-[0.85em]">
+const MyCode = ({ children }: { children?: React.ReactNode }) => (
+  <code className="font-normal before:content-none after:content-none standalone-code:rounded standalone-code:bg-single-code-bg standalone-code:px-[0.4rem] standalone-code:py-[0.2rem] standalone-code:text-[0.85em] standalone-code:text-single-code-fg">
     {children}
   </code>
 )
 
-const MyPre = ({ children }: { children?: React.ReactNode }) => (
-  <pre className="p-4">{children}</pre>
-)
+const MyPre = ({ children }: { children?: React.ReactNode }) => {
+  return (
+    <div className="relative">
+      <div
+        className="absolute -top-3 right-2 z-10 rounded-md border border-gray-300 bg-white px-2 text-sm
+            dark:border-0 dark:bg-gray-600"
+      >
+        js
+      </div>
+      <pre className="bg-[#2a2d3e] p-4">{children}</pre>
+    </div>
+  )
+}
 
 const Mya = ({ children }: { children?: React.ReactNode }) => (
   <a
@@ -42,13 +52,13 @@ const Mya = ({ children }: { children?: React.ReactNode }) => (
 )
 
 const MyBlockquote = ({ children }: { children?: React.ReactNode }) => (
-  <blockquote className="border-l-[3px] border-l-mdx-link text-[0.97em] font-normal not-italic text-content/85 [&>p]:before:content-none [&>p]:after:content-none">
+  <blockquote className="border-l-[3px] border-l-mdx-link text-[0.97em] font-normal not-italic [&>p]:before:content-none [&>p]:after:content-none">
     {children}
   </blockquote>
 )
 
 const MyTable = ({ children }: { children?: React.ReactNode }) => (
-  <div className="rounded-lg prose-table:border prose-table:border-slate-300 prose-tr:border-slate-400 prose-th:bg-primary prose-th:p-2 prose-th:text-content-reverse prose-td:border prose-td:border-slate-300 prose-td:p-2 dark:prose-table:border-zinc-700 dark:prose-tr:border-zinc-700 dark:prose-td:border-zinc-700">
+  <div className="rounded-lg prose-table:border prose-table:border-slate-300 prose-tr:border-slate-400 prose-th:bg-secondary prose-th:p-2 prose-th:text-white prose-td:border prose-td:border-slate-300 prose-td:p-2 dark:prose-table:border-zinc-700 dark:prose-tr:border-zinc-700 dark:prose-td:border-zinc-700">
     <table>{children}</table>
   </div>
 )
@@ -76,8 +86,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: Mya,
     img: MyImg,
     blockquote: MyBlockquote,
-    pre: MyPre,
-    code: Mycode,
+    // pre: MyPre,
+    code: MyCode,
     table: MyTable,
     ...components,
   }

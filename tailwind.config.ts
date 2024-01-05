@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss'
-const plugin = require('tailwindcss/plugin')
+import plugin from 'tailwindcss/plugin'
 
 const config: Config = {
   content: [
@@ -27,12 +27,12 @@ const config: Config = {
         'theme-btn-fg': 'hsl(var(--color-themetoggle-fg) / <alpha-value>)',
         bd: 'hsl(var(--color-border) / <alpha-value>)',
         content: 'hsl(var(--color-fg) / <alpha-value>)',
-        'content-reverse': 'hsl(var(--color-fg-reverse) / <alpha-value>)',
         bkg: 'hsl(var(--color-bg) / <alpha-value>)',
         primary: 'hsl(var(--color-primary) / <alpha-value>)',
         secondary: 'hsl(var(--color-secondary) / <alpha-value>)',
         tertiary: 'hsl(var(--color-tertiary) / <alpha-value>)',
-        'single-code': 'hsl(var(--color-single-code) / <alpha-value>)',
+        'single-code-bg': 'hsl(var(--color-single-code-bg) / <alpha-value>)',
+        'single-code-fg': 'hsl(var(--color-single-code-fg) / <alpha-value>)',
         'mdx-link': 'hsl(var(--color-mdx-link) / <alpha-value>)',
       },
       animation: {

@@ -1,6 +1,6 @@
 ---
 public: true
-title: How To Setup Linting & Formatting In Neovim And Replace null-ls my-nvim-config
+title: How To Setup Linting & Formatting In Neovim And Replace null-ls
 createdAt: '2021-11-20'
 updatedAt: '2021-11-20'
 author: dngtnv
@@ -30,9 +30,10 @@ This is a list in markdown:
 
 This is a code block:
 
-```js
-const greeting = 'hello world'
-console.log(greeting)
+```js title="js"
+const numbers = [1, 2, 3, 4, 5]
+let sum = 0
+numbers.filter((num) => num < 4).forEach((num) => (sum += num))
 ```
 
 This is ==highlight== text
