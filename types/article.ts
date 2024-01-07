@@ -5,6 +5,7 @@ type ArticleType = {
   createdAt: string
   updatedAt: string
   description: string
+  readTime: number
   image: {
     url: string
     alt: string

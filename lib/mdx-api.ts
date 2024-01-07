@@ -2,6 +2,7 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 import getReadTime from './mdx-read-time'
+import Article from '../types/article'
 
 const postsDirectory = join(process.cwd(), 'app', 'blog')
 
@@ -15,13 +16,27 @@ export function getArticleBySlug(slug: string, fields: string[] = []): Article {
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
-  type Items = {
-    [key: string]: string
+  interface Items extends Article {
+    [key: string]: string | number | string[] | Object
   }
 
   const readTime = getReadTime(content)
 
-  const items: Items = {}
+  const items: Items = {
+    slug: '',
+    title: '',
+    author: '',
+    createdAt: '',
+    updatedAt: '',
+    description: '',
+    readTime: 0,
+    image: {
+      url: '',
+      alt: '',
+    },
+    content: '',
+    topics: [],
+  }
 
   // Ensure only the minimal needed data is exposed
   fields.forEach((field) => {
