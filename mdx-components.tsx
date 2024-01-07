@@ -1,6 +1,10 @@
 import type { MDXComponents } from 'mdx/types'
 import Image, { ImageProps } from 'next/image'
 
+const Myp = ({ children }: { children?: React.ReactNode }) => (
+  <p className="md:my-5">{children}</p>
+)
+
 const Myh1 = ({ children }: { children?: React.ReactNode }) => (
   <h1 className="text-2xl md:text-3xl">{children}</h1>
 )
@@ -22,28 +26,14 @@ const Myli = ({ children }: { children?: React.ReactNode }) => (
 )
 
 const MyCode = ({ children }: { children?: React.ReactNode }) => (
-  <code className="font-normal before:content-none after:content-none standalone-code:rounded standalone-code:bg-single-code-bg standalone-code:px-[0.4rem] standalone-code:py-[0.2rem] standalone-code:text-[0.85em] standalone-code:text-single-code-fg">
+  <code className="font-normal before:content-none after:content-none standalone-code:rounded standalone-code:bg-codeblock-bg standalone-code:px-[0.4rem] standalone-code:py-[0.2rem] standalone-code:text-[0.85em] standalone-code:text-code-fg">
     {children}
   </code>
 )
 
-const MyPre = ({ children }: { children?: React.ReactNode }) => {
-  return (
-    <div className="relative">
-      <div
-        className="absolute -top-3 right-2 z-10 rounded-md border border-gray-300 bg-white px-2 text-sm
-            dark:border-0 dark:bg-gray-600"
-      >
-        js
-      </div>
-      <pre className="bg-[#2a2d3e] p-4">{children}</pre>
-    </div>
-  )
-}
-
 const Mya = ({ children }: { children?: React.ReactNode }) => (
   <a
-    className="cursor-pointer font-normal text-mdx-link decoration-current underline-offset-2 hover:text-mdx-link/70"
+    className="cursor-pointer font-normal text-accent2 decoration-current underline-offset-2 hover:text-accent2/70"
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -52,13 +42,13 @@ const Mya = ({ children }: { children?: React.ReactNode }) => (
 )
 
 const MyBlockquote = ({ children }: { children?: React.ReactNode }) => (
-  <blockquote className="border-l-[3px] border-l-mdx-link text-[0.97em] font-normal not-italic [&>p]:before:content-none [&>p]:after:content-none">
+  <blockquote className="border-l-[3px] border-l-accent2 text-[0.97em] font-normal not-italic dark:border-l-accent2 [&>p]:before:content-none [&>p]:after:content-none">
     {children}
   </blockquote>
 )
 
 const MyTable = ({ children }: { children?: React.ReactNode }) => (
-  <div className="rounded-lg prose-table:border prose-table:border-slate-300 prose-tr:border-slate-400 prose-th:bg-secondary prose-th:p-2 prose-th:text-white prose-td:border prose-td:border-slate-300 prose-td:p-2 dark:prose-table:border-zinc-700 dark:prose-tr:border-zinc-700 dark:prose-td:border-zinc-700">
+  <div className="rounded-lg prose-thead:bg-accent1/25 prose-tr:border-b prose-tr:border-b-slate-400 prose-th:p-2 prose-th:font-bold prose-th:text-black/85 prose-td:p-2 dark:prose-tr:border-zinc-700 dark:prose-th:text-white">
     <table>{children}</table>
   </div>
 )
@@ -78,6 +68,7 @@ const MyImg = (props: any) => (
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
+    p: Myp,
     h1: Myh1,
     h2: Myh2,
     h3: Myh3,
@@ -86,7 +77,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: Mya,
     img: MyImg,
     blockquote: MyBlockquote,
-    // pre: MyPre,
     code: MyCode,
     table: MyTable,
     ...components,

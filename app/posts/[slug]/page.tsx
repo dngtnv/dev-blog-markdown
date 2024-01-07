@@ -1,10 +1,28 @@
 import MdxLayout from '@/app/blog/layout'
-import { getArticleBySlug } from '../../../lib/mdx-api'
 import Tag from '@/components/ui/Tag'
 import dynamic from 'next/dynamic'
+import { getArticleBySlug } from '../../../lib/mdx-api'
+import Article from '../../../types/article'
 
-const Page = ({ params }: { params: { slug: string } }) => {
-  const article: any = getArticleBySlug(params.slug, [
+export function generateMetadata({ params }: { params: { slug: string } }) {
+  const article: Article = getArticleBySlug(params.slug, [
+    'title',
+    'createdAt',
+    'readTime',
+    'slug',
+    'author',
+    'content',
+    'topics',
+  ])
+
+  return {
+    title: article.title,
+    description: article.description,
+  }
+}
+
+const Page = async ({ params }: { params: { slug: string } }) => {
+  const article: Article = getArticleBySlug(params.slug, [
     'title',
     'createdAt',
     'readTime',
@@ -36,10 +54,10 @@ const Page = ({ params }: { params: { slug: string } }) => {
           <div className="flex items-center">
             <div className="h-[3rem] w-[3rem] shrink-0 rounded-[50%] bg-gray-500"></div>
             <div className="ml-3 flex flex-col">
-              <p className="text-sm font-semibold uppercase text-primary">
+              <p className="text-sm font-semibold uppercase text-accent2">
                 {article.author}
               </p>
-              <p className="text-sm text-tertiary">
+              <p className="text-sm text-accent1">
                 {article.createdAt} - {article.readTime} min read
               </p>
             </div>

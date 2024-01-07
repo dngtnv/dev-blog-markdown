@@ -1,8 +1,7 @@
 import ArticleItem from './ArticleItem'
 import { getAllArticles } from '../../lib/mdx-api'
-import Article from '@/types/article'
 
-const ArticleList = () => {
+const ArticleList = async () => {
   const allArticles = getAllArticles([
     'author',
     'title',
@@ -22,7 +21,7 @@ const ArticleList = () => {
         </p>
         <hr className="mt-[14px] border border-bd" />
         <div className="grid-col-1 my-9 grid gap-7 lg:grid-cols-2">
-          {allArticles.map((article: Article) => (
+          {allArticles.map((article: any) => (
             <ArticleItem key={article.slug} article={article} />
           ))}
         </div>
