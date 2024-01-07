@@ -1,4 +1,6 @@
-type ArticleType = {
+import { JSXElementConstructor, ReactElement } from 'react'
+
+export type Meta = {
   slug: string
   title: string
   author: string
@@ -10,8 +12,10 @@ type ArticleType = {
     url: string
     alt: string
   }
-  content: string
   topics: string[]
 }
 
-export default ArticleType
+export type BlogPost = {
+  meta: Meta
+  content: ReactElement<any, string | JSXElementConstructor<any>>
+}

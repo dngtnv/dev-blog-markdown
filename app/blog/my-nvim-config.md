@@ -59,3 +59,5 @@ This is an image:
 ![This is an image](https://source.unsplash.com/random/720x360)
 
 This is a youtube embed:
+
+<MdxVideo id='6h649f2fB9Q' />

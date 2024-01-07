@@ -1,51 +1,35 @@
 import MdxLayout from '@/app/blog/layout'
 import Tag from '@/components/ui/Tag'
-import dynamic from 'next/dynamic'
 import { getArticleBySlug } from '../../../lib/mdx-api'
-import Article from '../../../types/article'
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const article: Article = getArticleBySlug(params.slug, [
-    'title',
-    'createdAt',
-    'readTime',
-    'slug',
-    'author',
-    'content',
-    'topics',
-  ])
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}) {
+  const { meta } = await getArticleBySlug(params.slug)
 
   return {
-    title: article.title,
-    description: article.description,
+    title: meta.title,
+    description: meta.description,
   }
 }
 
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const article: Article = getArticleBySlug(params.slug, [
-    'title',
-    'createdAt',
-    'readTime',
-    'slug',
-    'author',
-    'content',
-    'topics',
-  ])
-
-  const DynamicMdx = dynamic(() => import(`../../blog/${article.slug}.md`))
+  const { meta, content } = await getArticleBySlug(params.slug)
 
   return (
     <article aria-labelledby="article-title">
       <header className="py-12 text-center">
         <div className="flex justify-center gap-2">
-          <Tag topics={article.topics} />
+          <Tag topics={meta.topics} />
         </div>
         <div className="px-6 text-center sm:px-16 lg:px-0">
           <h1
             id="article-title"
             className="mx-auto mt-6 inline-block max-w-3xl text-left text-xl font-semibold leading-[1.5] lg:text-4xl"
           >
-            <span className="text-left">{article.title}</span>
+            <span className="text-left">{meta.title}</span>
           </h1>
         </div>
       </header>
@@ -55,17 +39,15 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <div className="h-[3rem] w-[3rem] shrink-0 rounded-[50%] bg-gray-500"></div>
             <div className="ml-3 flex flex-col">
               <p className="text-sm font-semibold uppercase text-accent2">
-                {article.author}
+                {meta.author}
               </p>
               <p className="text-sm text-accent1">
-                {article.createdAt} - {article.readTime} min read
+                {meta.createdAt} - {meta.readTime} min read
               </p>
             </div>
           </div>
           <div className="my-5 text-base leading-[1.9] sm:text-lg">
-            <MdxLayout>
-              <DynamicMdx />
-            </MdxLayout>
+            <MdxLayout>{content}</MdxLayout>
           </div>
         </section>
         <aside className="hidden lg:block lg:w-[330px]">

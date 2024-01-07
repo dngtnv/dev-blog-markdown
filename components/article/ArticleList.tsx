@@ -1,14 +1,8 @@
 import ArticleItem from './ArticleItem'
-import { getAllArticles } from '../../lib/mdx-api'
+import { getAllArticlesMeta } from '../../lib/mdx-api'
 
 const ArticleList = async () => {
-  const allArticles = getAllArticles([
-    'author',
-    'title',
-    'createdAt',
-    'slug',
-    'topics',
-  ])
+  const allArticles = await getAllArticlesMeta()
 
   return (
     <section
