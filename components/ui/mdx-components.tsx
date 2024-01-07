@@ -1,23 +1,37 @@
 import Image, { ImageProps } from 'next/image'
+import { ReactNode } from 'react'
+
+interface MdxHeadingProps {
+  id: string
+  children: ReactNode
+}
 
 export const MdxP = ({ children }: { children?: React.ReactNode }) => (
   <p className="md:my-5">{children}</p>
 )
 
-export const MdxH1 = ({ children }: { children?: React.ReactNode }) => (
-  <h1 className="text-2xl md:text-3xl">{children}</h1>
+export const MdxH1: React.FC<MdxHeadingProps> = ({ id, children }) => (
+  <h1 id={id} className="text-2xl md:text-3xl">
+    {children}
+  </h1>
 )
 
-export const MdxH2 = ({ children }: { children?: React.ReactNode }) => (
-  <h2 className="text-xl md:mt-14 md:text-2xl">{children}</h2>
+export const MdxH2: React.FC<MdxHeadingProps> = ({ id, children }) => (
+  <h2 id={id} className="text-xl md:mt-14 md:text-2xl">
+    {children}
+  </h2>
 )
 
-export const MdxH3 = ({ children }: { children?: React.ReactNode }) => (
-  <h3 className="text-xl md:mt-10 md:text-xl">{children}</h3>
+export const MdxH3: React.FC<MdxHeadingProps> = ({ id, children }) => (
+  <h3 id={id} className="text-xl md:mt-10 md:text-xl">
+    {children}
+  </h3>
 )
 
-export const MdxH4 = ({ children }: { children?: React.ReactNode }) => (
-  <h4 className="text-lg md:mt-7">{children}</h4>
+export const MdxH4: React.FC<MdxHeadingProps> = ({ id, children }) => (
+  <h4 id={id} className="text-lg md:mt-7">
+    {children}
+  </h4>
 )
 
 export const MdxLi = ({ children }: { children?: React.ReactNode }) => (
@@ -71,7 +85,6 @@ export const MdxVideo = ({ id }: { id: string }) => {
       <iframe
         src={`https://www.youtube.com/embed/${id}`}
         title="YouTube video player"
-        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen={true}
         className="h-full w-full rounded-lg border border-slate-300 dark:border-zinc-700"

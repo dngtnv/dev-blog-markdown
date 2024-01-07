@@ -7,7 +7,7 @@ export type Meta = {
   createdAt: string
   updatedAt: string
   description: string
-  readTime: number
+  // readTime: number
   image: {
     url: string
     alt: string
@@ -16,6 +16,20 @@ export type Meta = {
 }
 
 export type BlogPost = {
-  meta: Meta
+  meta: Meta & {
+    readTime: number
+    headings: Node[]
+  }
   content: ReactElement<any, string | JSXElementConstructor<any>>
+}
+
+export type Node = {
+  data: {
+    hProperties: {
+      id: string
+    }
+  }
+  value: string
+  children: Node[]
+  depth: number
 }

@@ -4,6 +4,10 @@ import getReadTime from './mdx-read-time'
 import { BlogPost, Meta } from '../types/article'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
+import remarkGfm from 'remark-gfm'
+import { remark } from 'remark'
+import { headingTree } from './mdx-heading'
+import rehypeSlug from 'rehype-slug'
 import {
   MdxBlockquote,
   MdxCode,
@@ -18,7 +22,6 @@ import {
   MdxP,
   MdxVideo,
 } from '@/components/ui/mdx-components'
-import remarkGfm from 'remark-gfm'
 
 const options = {
   theme: 'material-theme-palenight',
@@ -41,6 +44,12 @@ const options = {
 
 const postsDirectory = join(process.cwd(), 'app', 'blog')
 
+export async function getHeadings(content: string) {
+  // Use remark to convert markdown into HTML string
+  const processedContent = await remark().use(headingTree).process(content)
+  return processedContent.data.headings
+}
+
 export function getArticleSlugs() {
   return fs.readdirSync(postsDirectory).filter((path) => /\.md?$/.test(path))
 }
@@ -51,6 +60,7 @@ export async function getArticleBySlug(slug: string) {
   const fileContents = fs.readFileSync(fullPath, 'utf8')
 
   const readTime = getReadTime(fileContents)
+  const headings = await getHeadings(fileContents)
 
   const { frontmatter, content } = await compileMDX<Meta>({
     source: fileContents,
@@ -72,13 +82,18 @@ export async function getArticleBySlug(slug: string) {
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [[rehypePrettyCode, options]],
+        rehypePlugins: [rehypeSlug, [rehypePrettyCode, options]],
       },
     },
   })
 
   const blogPostObj: BlogPost = {
-    meta: { ...frontmatter, slug: realSlug, readTime: readTime },
+    meta: {
+      ...frontmatter,
+      slug: realSlug,
+      readTime: readTime,
+      headings: headings,
+    },
     content,
   }
 

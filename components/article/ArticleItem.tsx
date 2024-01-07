@@ -1,8 +1,8 @@
-import Article from '@/types/article'
+import { Meta } from '@/types/article'
 import Link from 'next/link'
 import Tag from '../ui/Tag'
 
-const ArticleItem = ({ article }: { article: Article }) => {
+const ArticleItem = ({ article }: { article: Meta }) => {
   return (
     <article
       key={article.slug}

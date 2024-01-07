@@ -1,6 +1,7 @@
 import MdxLayout from '@/app/blog/layout'
 import Tag from '@/components/ui/Tag'
 import { getArticleBySlug } from '../../../lib/mdx-api'
+import TableOfContents from '@/components/article/TableOfContents'
 
 export async function generateMetadata({
   params,
@@ -17,6 +18,7 @@ export async function generateMetadata({
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const { meta, content } = await getArticleBySlug(params.slug)
+  console.log(meta.headings)
 
   return (
     <article aria-labelledby="article-title">
@@ -51,7 +53,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </section>
         <aside className="hidden lg:block lg:w-[330px]">
-          Table of Contents
+          <TableOfContents nodes={meta.headings} />
         </aside>
       </div>
     </article>
