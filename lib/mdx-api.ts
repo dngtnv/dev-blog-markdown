@@ -3,7 +3,6 @@ import { join } from 'path'
 import getReadTime from './mdx-read-time'
 import { BlogPost, Meta } from '../types/article'
 import { compileMDX } from 'next-mdx-remote/rsc'
-import remarkFrontmatter from 'remark-frontmatter'
 import rehypePrettyCode from 'rehype-pretty-code'
 import {
   MdxBlockquote,
@@ -72,7 +71,7 @@ export async function getArticleBySlug(slug: string) {
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkFrontmatter, remarkGfm],
+        remarkPlugins: [remarkGfm],
         rehypePlugins: [[rehypePrettyCode, options]],
       },
     },
