@@ -18,7 +18,6 @@ export async function generateMetadata({
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const { meta, content } = await getArticleBySlug(params.slug)
-  console.log(meta.headings)
 
   return (
     <article aria-labelledby="article-title">

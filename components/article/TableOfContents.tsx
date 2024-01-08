@@ -1,40 +1,47 @@
 'use client'
+
 import { Node } from '../../types/article'
+import TOCLink from './TOCLink'
 
 const TableOfContents = ({ nodes }: { nodes: Node[] }) => {
   if (!nodes?.length) return null
 
-  function renderNodes(nodes: Node[]) {
+  function renderNodes(nodes: Node[], depth: number = 1) {
+    const isOutermost = depth === 1
     return (
-      <ul>
+      <ol
+        className={`font-bold ${isOutermost
+            ? 'relative before:absolute before:bottom-3 before:left-[0.3rem] before:top-3 before:w-[2px] before:bg-primary/45 before:content-[""]'
+            : 'font-normal'
+          }`}
+      >
         {nodes.map((node) => {
-          const id = node.data.hProperties.id
           return (
-            <li key={id}>
-              <a
-                href={`#${id}`}
-                className="text-primary"
-                onClick={(e) => {
-                  e.preventDefault()
-                  document
-                    .getElementById(id)
-                    .scrollIntoView({ behavior: 'smooth', block: 'start' })
-                }}
-              >
-                {node.value}
-              </a>
-              {node.children?.length > 0 && renderNodes(node.children)}
+            <li
+              key={node.data.hProperties.id}
+              className={`relative my-2 before:absolute before:top-[6px] before:rounded-full before:border-2 before:border-white before:bg-[#7aa2f7] before:content-[""]  dark:before:border-[#23273A] dark:before:bg-[#34548a] ${isOutermost
+                  ? 'pl-5 before:left-0 before:h-3 before:w-3'
+                  : 'before:left-[-18.3px] before:h-2 before:w-2'
+                }`}
+            >
+              <TOCLink node={node} />
+              {node.children?.length > 0 &&
+                renderNodes(node.children, depth + 1)}
             </li>
           )
         })}
-      </ul>
+      </ol>
     )
   }
 
   return (
-    <div>
-      <p>Table of contents</p>
-      {renderNodes(nodes)}
+    <div className="sticky top-28 max-h-[calc(100vh_-_160px)] overflow-auto rounded-xl bg-white p-5 dark:bg-[#23273A]">
+      <span className="text-xl font-semibold text-content">
+        Table of contents
+      </span>
+      <div className="text-sm text-[#d4d4d8] md:text-base">
+        {renderNodes(nodes)}
+      </div>
     </div>
   )
 }
