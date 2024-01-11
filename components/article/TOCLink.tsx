@@ -21,6 +21,8 @@ function useHighlighted(
 
     const elements = document.querySelectorAll('h1, h2, h3, h4')
     elements.forEach((el) => observer.current?.observe(el))
+
+    // Clean up
     return () => observer.current?.disconnect()
   }, [])
 

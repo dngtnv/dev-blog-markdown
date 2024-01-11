@@ -1,26 +1,39 @@
 import MdxLayout from '@/app/blog/layout'
 import Tag from '@/components/ui/Tag'
 import { getArticleBySlug } from '../../../lib/mdx-api'
-import TableOfContents from '@/components/article/TableOfContents'
+import TOC from '@/components/article/TOC'
+import getFormattedDate from '@/lib/mdx-formatted-date'
+import Image from 'next/image'
+import { ResolvingMetadata } from 'next'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export async function generateMetadata(
+  {
+    params,
+  }: {
+    params: { slug: string }
+  },
+  parent: ResolvingMetadata,
+) {
   const { meta } = await getArticleBySlug(params.slug)
+
+  // optionally access and extend (rather than replace) parent matedata
+  const previousImages = (await parent).openGraph?.images || []
 
   return {
     title: meta.title,
     description: meta.description,
+    openGraph: {
+      images: [`${meta.image.url}`, ...previousImages],
+    },
   }
 }
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const { meta, content } = await getArticleBySlug(params.slug)
+  const pubDate = getFormattedDate(meta.createdAt)
 
   return (
-    <article aria-labelledby="article-title">
+    <article className="pb-24" aria-labelledby="article-title">
       <header className="py-12 text-center">
         <div className="flex justify-center gap-2">
           <Tag topics={meta.topics} />
@@ -43,16 +56,28 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 {meta.author}
               </p>
               <p className="text-sm text-accent1">
-                {meta.createdAt} - {meta.readTime} min read
+                {pubDate} · {meta.readTime} min read
               </p>
             </div>
           </div>
+          <figure className="relative my-6 aspect-video w-full">
+            <Image
+              className="absolute rounded-lg object-cover"
+              src={meta.image.url}
+              alt={meta.image.alt}
+              priority
+              fill
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAAAkCAYAAACgyw26AAAAtUlEQVR42u3WQREAAAQAMJKroikVvN2WYhk9FQAAwEkKNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwDATwspCExdccHXxQAAAABJRU5ErkJggg=="
+              sizes="(min-width: 1280px) 674px, (min-width: 1000px) calc(9.23vw + 510px), (min-width: 580px) calc(96vw - 73px), calc(100vw - 48px)"
+            />
+          </figure>
           <div className="my-5 text-base leading-[1.9] sm:text-lg">
             <MdxLayout>{content}</MdxLayout>
           </div>
         </section>
         <aside className="hidden lg:block lg:w-[330px]">
-          <TableOfContents nodes={meta.headings} />
+          <TOC nodes={meta.headings} />
         </aside>
       </div>
     </article>

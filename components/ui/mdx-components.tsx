@@ -74,7 +74,7 @@ export const MdxImg = (props: any) => (
     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAAAkCAYAAACgyw26AAAAtUlEQVR42u3WQREAAAQAMJKroikVvN2WYhk9FQAAwEkKNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwDATwspCExdccHXxQAAAABJRU5ErkJggg=="
     loading="lazy"
     alt=""
-    sizes="100vw"
+    sizes="(min-width: 1280px) 672px, (min-width: 1000px) calc(9.23vw + 509px), (min-width: 880px) 718px, (min-width: 580px) 84.29vw, calc(100vw - 50px)"
     {...(props as ImageProps)}
   />
 )
