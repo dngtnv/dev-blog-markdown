@@ -1,10 +1,10 @@
 import MdxLayout from '@/app/blog/layout'
-import Tag from '@/components/ui/Tag'
-import { getArticleBySlug } from '../../../lib/mdx-api'
 import TOC from '@/components/article/TOC'
+import Tag from '@/components/ui/Tag'
 import getFormattedDate from '@/lib/mdx-formatted-date'
-import Image from 'next/image'
 import { ResolvingMetadata } from 'next'
+import Image from 'next/image'
+import { getArticleBySlug } from '../../../lib/mdx-api'
 
 export async function generateMetadata(
   {
@@ -76,7 +76,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <MdxLayout>{content}</MdxLayout>
           </div>
         </section>
-        <aside className="hidden lg:block lg:w-[330px]">
+        <aside className="hidden lg:block lg:w-[270px]">
           <TOC nodes={meta.headings} />
         </aside>
       </div>
