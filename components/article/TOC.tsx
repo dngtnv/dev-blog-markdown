@@ -30,10 +30,10 @@ const TableOfContents = ({ nodes }: { nodes: Node[] }) => {
 
   return (
     <div className="scrollbar-webkit sticky top-28 max-h-[calc(100vh_-_160px)] overflow-auto rounded-xl bg-bkg">
-      <span className="text-xl font-semibold text-content">
+      <span className="text-xl font-semibold uppercase tracking-wider text-content">
         In this article
       </span>
-      <div className="text-sm text-[#d4d4d8] md:text-base">
+      <div className="mt-5 text-sm text-[#d4d4d8] md:text-base">
         {renderNodes(nodes)}
       </div>
     </div>

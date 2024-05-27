@@ -34,16 +34,16 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <article className="pb-24" aria-labelledby="article-title">
-      <header className="py-12 text-center">
+      <header className="py-20 text-center">
         <div className="flex justify-center gap-2">
           <Tag topics={meta.topics} />
         </div>
         <div className="px-6 text-center sm:px-16 lg:px-0">
           <h1
             id="article-title"
-            className="mx-auto mt-6 inline-block max-w-3xl text-left text-xl font-semibold leading-[1.5] lg:text-4xl"
+            className="mx-auto mt-6 inline-block max-w-3xl text-balance text-center text-xl font-semibold leading-[1.5] lg:text-4xl lg:leading-[3rem]"
           >
-            <span className="text-left">{meta.title}</span>
+            {meta.title}
           </h1>
         </div>
       </header>
