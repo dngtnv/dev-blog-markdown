@@ -3,9 +3,11 @@ export default function About() {
     <>
       <section className="mx-auto mt-11 flex max-w-2xl flex-col gap-2 px-3 sm:px-6 lg:px-0">
         <h1 className="text-xl font-bold">About</h1>
-        <p className="text-lg leading-7">
+        <p className="text-lg leading-7 dark:text-[#bdbdbd]">
           Hello! I&apos;m{' '}
-          <span className="text-xl font-bold">Tan Vu Duong</span>
+          <span className="text-xl font-bold dark:text-white">
+            Tan Vu Duong
+          </span>
         </p>
         <p className="text-balance text-lg leading-7 dark:text-[#bdbdbd]">
           I&apos;m a full-stack web developer with a passion for creating
@@ -14,16 +16,26 @@ export default function About() {
           that meet and exceed client expectations.
         </p>
       </section>
-      <section className="mx-auto mt-11 flex max-w-2xl flex-col gap-2 px-3 sm:px-6 lg:px-0">
-        <h1 className="text-xl font-bold">Skills</h1>
-        <ul className="text-lg leading-7 dark:text-[#bdbdbd]">
-          <li>HTML5, CSS3, JavaScript (ES6+)</li>
-          <li>React, Redux, Next.js</li>
-          <li>Node.js, Express, MongoDB</li>
-          <li>RESTful APIs, JWT, OAuth</li>
-          <li>Git, GitHub</li>
-          <li>Photoshop, Figma</li>
-        </ul>
+      <section className="mx-auto mt-11 flex max-w-2xl flex-row justify-between px-3 sm:px-6 lg:px-0">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-xl font-bold">Skills</h1>
+          <ul className="text-lg leading-7 dark:text-[#bdbdbd]">
+            <li>HTML5, CSS3, JavaScript (ES6+)</li>
+            <li>React, Redux, Next.js</li>
+            <li>Node.js, Express, MongoDB</li>
+            <li>RESTful APIs, JWT, OAuth</li>
+            <li>Git, GitHub</li>
+            <li>Photoshop, Figma</li>
+          </ul>
+        </div>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-xl font-bold">Interests & Hobbies</h1>
+          <ul className="text-lg leading-7 dark:text-[#bdbdbd]">
+            <li>Music</li>
+            <li>Movie</li>
+            <li>Photography</li>
+          </ul>
+        </div>
       </section>
       <section className="mx-auto mt-11 flex max-w-2xl flex-col gap-2 px-3 sm:px-6 lg:px-0">
         <h1 className="text-xl font-bold">Connect</h1>
