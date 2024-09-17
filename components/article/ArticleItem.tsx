@@ -8,7 +8,7 @@ const ArticleItem = ({ article }: { article: Meta }) => {
   const pubDate = getFormattedDate(article.createdAt)
 
   return (
-    <article className="group relative rounded-2xl bg-[#eeeeee] shadow-lg dark:bg-[#282E44]">
+    <article className="group relative rounded-2xl bg-[#DDEEF8] shadow-lg dark:bg-[#1B2532]">
       <div className="absolute right-3 top-3 z-50 flex gap-2">
         <Tag topics={article.topics} />
       </div>
