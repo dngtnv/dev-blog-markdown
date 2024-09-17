@@ -1,6 +1,9 @@
 ---
 public: true
 title: How To Setup Linting & Formatting In Neovim And Replace null-ls
+image:
+  url: 'https://source.unsplash.com/random'
+  alt: 'this is random image'
 createdAt: '2021-11-20'
 updatedAt: '2021-11-20'
 author: dngtnv
@@ -59,3 +62,5 @@ This is an image:
 ![This is an image](https://source.unsplash.com/random/720x360)
 
 This is a youtube embed:
+
+<MdxVideo id='6h649f2fB9Q' />

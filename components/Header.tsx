@@ -36,20 +36,20 @@ const Header = () => {
               </li>
               <li className="font-medium hover:text-nav-hover dark:hover:text-nav-hover/75">
                 <Link
+                  href="/projects"
+                  className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bd focus-visible:ring-offset-2"
+                  aria-label="Projects"
+                >
+                  Projects
+                </Link>
+              </li>
+              <li className="font-medium hover:text-nav-hover dark:hover:text-nav-hover/75">
+                <Link
                   href="/about"
                   className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bd focus-visible:ring-offset-2"
                   aria-label="About me"
                 >
                   About
-                </Link>
-              </li>
-              <li className="font-medium hover:text-nav-hover dark:hover:text-nav-hover/75">
-                <Link
-                  href="/contact"
-                  className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bd focus-visible:ring-offset-2"
-                  aria-label="Contacts"
-                >
-                  Contacts
                 </Link>
               </li>
             </menu>

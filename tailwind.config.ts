@@ -58,8 +58,41 @@ const config: Config = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    plugin(function({ addVariant }) {
+    plugin(function ({ addVariant }) {
       addVariant('standalone-code', '&:not(:is(pre code))')
+    }),
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        // '.scrollbar-thin': {
+        //   scrollbarWidth: 'thin',
+        //   scrollbarColor: 'rgb(31 28 27) #23273a',
+        // },
+        '.scrollbar-webkit': {
+          '&::-webkit-scrollbar': {
+            width: '4px',
+          },
+          '&::-webkit-scrollbar-track': {
+            display: 'none',
+          },
+          '&::-webkit-scrollbar-button': {
+            display: 'none',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: 'var(--color-bg)',
+            borderRadius: '20px',
+            border: '2px solid #373847',
+          },
+        },
+        '[data-theme="dark"]': {
+          '.scrollbar-webkit': {
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: 'var(--color-fg)',
+              border: '2px solid #adaaaa',
+            },
+          },
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
     }),
   ],
   darkMode: ['class', '[data-theme="dark"]'],

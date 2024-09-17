@@ -1,6 +1,9 @@
 ---
 public: true
 title: This is my react summary for my own
+image:
+  url: 'https://source.unsplash.com/random'
+  alt: 'this is random image'
 createdAt: '2023-12-28'
 updatedAt: '2023-12-28'
 author: dngtnv

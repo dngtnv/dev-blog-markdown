@@ -1,51 +1,49 @@
 import MdxLayout from '@/app/blog/layout'
+import TOC from '@/components/article/TOC'
 import Tag from '@/components/ui/Tag'
-import dynamic from 'next/dynamic'
+import getFormattedDate from '@/lib/mdx-formatted-date'
+import { ResolvingMetadata } from 'next'
+import Image from 'next/image'
 import { getArticleBySlug } from '../../../lib/mdx-api'
-import Article from '../../../types/article'
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const article: Article = getArticleBySlug(params.slug, [
-    'title',
-    'createdAt',
-    'readTime',
-    'slug',
-    'author',
-    'content',
-    'topics',
-  ])
+export async function generateMetadata(
+  {
+    params,
+  }: {
+    params: { slug: string }
+  },
+  parent: ResolvingMetadata,
+) {
+  const { meta } = await getArticleBySlug(params.slug)
+
+  // optionally access and extend (rather than replace) parent matedata
+  const previousImages = (await parent).openGraph?.images || []
 
   return {
-    title: article.title,
-    description: article.description,
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      images: [`${meta.image.url}`, ...previousImages],
+    },
   }
 }
 
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const article: Article = getArticleBySlug(params.slug, [
-    'title',
-    'createdAt',
-    'readTime',
-    'slug',
-    'author',
-    'content',
-    'topics',
-  ])
-
-  const DynamicMdx = dynamic(() => import(`../../blog/${article.slug}.md`))
+  const { meta, content } = await getArticleBySlug(params.slug)
+  const pubDate = getFormattedDate(meta.createdAt)
 
   return (
-    <article aria-labelledby="article-title">
-      <header className="py-12 text-center">
+    <article className="pb-24" aria-labelledby="article-title">
+      <header className="py-20 text-center">
         <div className="flex justify-center gap-2">
-          <Tag topics={article.topics} />
+          <Tag topics={meta.topics} />
         </div>
         <div className="px-6 text-center sm:px-16 lg:px-0">
           <h1
             id="article-title"
-            className="mx-auto mt-6 inline-block max-w-3xl text-left text-xl font-semibold leading-[1.5] lg:text-4xl"
+            className="mx-auto mt-6 inline-block max-w-3xl text-balance text-center text-xl font-semibold leading-[1.5] lg:text-4xl lg:leading-[3rem]"
           >
-            <span className="text-left">{article.title}</span>
+            {meta.title}
           </h1>
         </div>
       </header>
@@ -55,21 +53,31 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <div className="h-[3rem] w-[3rem] shrink-0 rounded-[50%] bg-gray-500"></div>
             <div className="ml-3 flex flex-col">
               <p className="text-sm font-semibold uppercase text-accent2">
-                {article.author}
+                {meta.author}
               </p>
               <p className="text-sm text-accent1">
-                {article.createdAt} - {article.readTime} min read
+                {pubDate} · {meta.readTime} min read
               </p>
             </div>
           </div>
+          <figure className="relative my-6 aspect-video w-full">
+            <Image
+              className="absolute rounded-lg object-cover"
+              src={meta.image.url}
+              alt={meta.image.alt}
+              priority
+              fill
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAAAkCAYAAACgyw26AAAAtUlEQVR42u3WQREAAAQAMJKroikVvN2WYhk9FQAAwEkKNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwDATwspCExdccHXxQAAAABJRU5ErkJggg=="
+              sizes="(min-width: 1280px) 674px, (min-width: 1000px) calc(9.23vw + 510px), (min-width: 580px) calc(96vw - 73px), calc(100vw - 48px)"
+            />
+          </figure>
           <div className="my-5 text-base leading-[1.9] sm:text-lg">
-            <MdxLayout>
-              <DynamicMdx />
-            </MdxLayout>
+            <MdxLayout>{content}</MdxLayout>
           </div>
         </section>
-        <aside className="hidden lg:block lg:w-[330px]">
-          Table of Contents
+        <aside className="hidden lg:block lg:w-[270px]">
+          <TOC nodes={meta.headings} />
         </aside>
       </div>
     </article>
