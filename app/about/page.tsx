@@ -37,7 +37,7 @@ export default function About() {
           </ul>
         </div>
       </section>
-      <section className="mx-auto mt-11 flex max-w-2xl flex-col gap-2 px-3 sm:px-6 lg:px-0">
+      <section className="mx-auto my-11 flex max-w-2xl flex-col gap-2 px-3 sm:px-6 lg:px-0">
         <h1 className="text-xl font-bold">Connect</h1>
         <p className="text-lg dark:text-[#bdbdbd]">
           Reach me directly at{' '}
