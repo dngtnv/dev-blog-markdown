@@ -17,7 +17,7 @@ export default function Projects() {
           >
             <div className="flex flex-col gap-2">
               <Image
-                src="https://source.unsplash.com/random/720x360"
+                src="/img/zenn.dev_.png"
                 width={720}
                 height={360}
                 className="rounded-lg"
@@ -34,7 +34,7 @@ export default function Projects() {
           </a>
           <a
             href="https://wordev.netlify.app/"
-            className="group relative overflow-hidden rounded-lg p-3 before:absolute before:left-0 before:top-0 before:z-[-1] before:h-full before:w-full before:rounded-lg before:bg-[#DDEEF8] before:bg-[url('/wordev.netlify.app_.png')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-90 before:filter before:transition-transform before:content-[''] hover:before:scale-125 md:col-span-2 md:row-span-1 before:dark:bg-[#1B2532]"
+            className="group relative overflow-hidden rounded-lg p-3 before:absolute before:left-0 before:top-0 before:z-[-1] before:h-full before:w-full before:rounded-lg before:bg-[#DDEEF8] before:bg-[url('/img/wordev.netlify.app_.png')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-90 before:filter before:transition-transform before:content-[''] hover:before:scale-125 md:col-span-2 md:row-span-1 before:dark:bg-[#1B2532]"
           >
             <div className="flex flex-col gap-2 text-center text-white">
               <h2 className="text-lg font-bold group-hover:underline">
@@ -54,7 +54,7 @@ export default function Projects() {
                 Rou Landing Page
               </h2>
               <Image
-                src={'/image-logo.png'}
+                src={'/img/image-logo.png'}
                 width={100}
                 height={100}
                 alt="rou"
