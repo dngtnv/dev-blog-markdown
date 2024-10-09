@@ -1,27 +1,27 @@
-import fs from 'fs'
-import { join } from 'path'
-import getReadTime from './mdx-read-time'
-import { BlogPost, Meta } from '../types/article'
-import { compileMDX } from 'next-mdx-remote/rsc'
-import rehypePrettyCode from 'rehype-pretty-code'
-import remarkGfm from 'remark-gfm'
-import { remark } from 'remark'
-import { headingTree } from './mdx-heading'
-import rehypeSlug from 'rehype-slug'
 import {
   MdxBlockquote,
   MdxCode,
-  MdxImg,
-  MdxTable,
-  MdxLink,
   MdxH1,
   MdxH2,
   MdxH3,
   MdxH4,
+  MdxImg,
   MdxLi,
+  MdxLink,
   MdxP,
+  MdxTable,
   MdxVideo,
 } from '@/components/ui/mdx-components'
+import fs from 'fs'
+import { compileMDX } from 'next-mdx-remote/rsc'
+import { join } from 'path'
+import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeSlug from 'rehype-slug'
+import { remark } from 'remark'
+import remarkGfm from 'remark-gfm'
+import { BlogPost, Meta } from '../types/article'
+import { headingTree } from './mdx-heading'
+import getReadTime from './mdx-read-time'
 
 const options = {
   theme: 'material-theme-palenight',
