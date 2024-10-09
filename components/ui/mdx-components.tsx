@@ -1,9 +1,8 @@
 import Image, { ImageProps } from 'next/image'
-import { ReactNode } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 
-interface MdxHeadingProps {
-  id: string
-  children: ReactNode
+interface MdxHeadingProps extends HTMLAttributes<HTMLHeadingElement> {
+  id?: string
 }
 
 export const MdxP = ({ children }: { children?: React.ReactNode }) => (
@@ -73,7 +72,6 @@ export const MdxImg = (props: any) => (
     placeholder="blur"
     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAAAkCAYAAACgyw26AAAAtUlEQVR42u3WQREAAAQAMJKroikVvN2WYhk9FQAAwEkKNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwCAQAMAgEALNAAACDQAAAg0AAAINAAACDQAAAg0AAAItEADAIBAAwCAQAMAgEADAIBAAwDATwspCExdccHXxQAAAABJRU5ErkJggg=="
     loading="lazy"
-    alt=""
     sizes="(min-width: 1280px) 672px, (min-width: 1000px) calc(9.23vw + 509px), (min-width: 880px) 718px, (min-width: 580px) 84.29vw, calc(100vw - 50px)"
     {...(props as ImageProps)}
   />
